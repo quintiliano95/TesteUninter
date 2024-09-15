@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbuns da NASA</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .album-grid { display: flex; flex-wrap: wrap; }
+        .album-item { width: 24%; margin: 1%; padding: 10px; border: 1px solid #ccc; }
+        .album-item img { width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1>Álbuns Recentes da NASA</h1>
+    <div class="album-grid">
+        {% for album in albums %}
+        <div class="album-item">
+            <h3>{{ album.title }}</h3>
+            <p>Data: {{ album.date_created }}</p>
+            <a href="{{ url_for('album_details', album_id=album.album_id) }}">
+                <img src="{{ album.preview_image }}" alt="{{ album.title }}">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

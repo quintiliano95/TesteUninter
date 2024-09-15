@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Álbum</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .media-grid { display: flex; flex-wrap: wrap; }
+        .media-item { width: 24%; margin: 1%; padding: 10px; }
+        .media-item img { width: 100%; height: auto; }
+        .media-item video { width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1>Arquivos do Álbum</h1>
+    <div class="media-grid">
+        {% for file in files %}
+        <div class="media-item">
+            {% if file.media_type == 'image' %}
+                <img src="{{ file.file_url }}" alt="Image">
+            {% elif file.media_type == 'video' %}
+                <video controls>
+                    <source src="{{ file.file_url }}" type="video/mp4">
+                    Seu navegador não suporta o player de vídeo.
+                </video>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
