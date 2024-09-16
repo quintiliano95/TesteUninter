@@ -48,11 +48,11 @@ def album_details(album_id):
 
     files_data = []
     for item in album_files:
-        media_type = item['data'][0]['media_type']
         file_url = item['href']
+        if file_url.endswith("metadata.json"):
+            continue
 
         files_data.append({
-            'media_type': media_type,
             'file_url': file_url
         })
 
