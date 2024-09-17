@@ -1,4 +1,7 @@
+import os
 import random
+from urllib.parse import urlparse
+
 import requests
 from flask import Flask, render_template, url_for
 
@@ -47,11 +50,17 @@ def album_details(album_id):
     files_data = []
     for item in album_files:
         file_url = item['href']
+
+        parsed_url = urlparse(file_url)
+        path = parsed_url.path
+        filename = os.path.basename(path)
+
         if file_url.endswith("metadata.json"):
             continue
 
         files_data.append({
-            'file_url': file_url
+            'file_url': file_url,
+            'file_name': filename
         })
 
     return render_template('album.html', files=files_data)

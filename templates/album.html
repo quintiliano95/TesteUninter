@@ -27,7 +27,7 @@
             {% for file in files %}
             <div class="col-md-3 col-sm-6 mb-4">
                 <div class="card h-100">
-                    <img class="card-img-top" src="{{ file.file_url }}" alt="Image">
+                    <img class="card-img-top" src="{{ file.file_url }}" alt="Image" title="{{file.file_name}}">
                 </div>
             </div>
             {% endfor %}
